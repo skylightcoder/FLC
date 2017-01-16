@@ -1,0 +1,16 @@
+<html lang="en">
+{% load static %}
+{% load chartit %}
+<head>
+    <!-- code to include the highcharts and jQuery libraries goes here -->
+    <!-- load_charts filter takes a comma-separated list of id's where -->
+    <!-- the charts need to be rendered to                             -->
+    <script type="text/javascript" src="{% static 'js/jquery-1.7.0.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/highcharts.js' %}"></script>
+
+    {{ staticchart|load_charts:"container" }}
+</head>
+<body>
+    <div id='container' style="background-color:black; overflow:hidden;"></div>
+</body>
+</html>

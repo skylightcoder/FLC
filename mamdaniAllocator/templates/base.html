@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+    <head>
+        <title>Fuzzy Logic</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <style type="text/css">
+            pre {
+                background-color: #D8F0FF;
+                border: 1px solid #9BBBD5;
+                padding: 8px;
+            }
+        </style>
+        <link rel="stylesheet" href="{% static 'js/jquery-ui.css' %}">
+        <script type="text/javascript" src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+
+    </head>
+
+    <body>
+        {% block body %}
+        {% endblock %}
+        {% block monitor %}
+        {% endblock %}
+        {% block result %}
+        {% endblock %}
+    </body>
+</html>

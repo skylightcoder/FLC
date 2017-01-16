@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block body %}
+    <form name="form" action="{% url 'monitor' %}" method="POST">{% csrf_token %}
+        <h1 align="center"> MAMDANI FUZZY LOGIC CONTROLLER</h1>
+        <div style="border: solid; padding-bottom: 10px; border-color: #2d6987 " id="head_div">
+            <p style="margin-top: 25px; margin-bottom: 25px; margin-left: 500px;;">
+                {{ form.as_table }}
+                <button type="submit" class="btn btn-primary">RUN</button>
+            </p>
+        </div>
+
+    </form>
+    <div class="col-sm-4">
+     <iframe src="/mamdaniAllocator/ramfunction" style="background-color: white; opacity: 1.0" width="500" height="500"></iframe>
+    </div>
+    <div class="col-sm-4">
+     <iframe src="/mamdaniAllocator/cpufunction" style="background-color: white; opacity: 1.0" width="500" height="500"></iframe>
+    </div>
+    <div class="col-sm-4">
+     <iframe src="/mamdaniAllocator/diskfunction" style="background-color: white; opacity: 1.0" width="500" height="500"></iframe>
+    </div>
+{% endblock %}
