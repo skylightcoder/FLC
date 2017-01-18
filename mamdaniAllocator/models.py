@@ -70,5 +70,3 @@ class Diskusage(models.Model):
 #         self.server_ram -= virtualmachine.machine_ram
 #         self.server_disk -= virtualmachine.machine_disk
 
-
-from django.db import models
