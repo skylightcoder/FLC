@@ -1,5 +1,7 @@
 import operator
 from .models import cpuset, ramset, diskset, outputset
+
+
 def cpufuzzylogic(cpu):
     smallSet = []
     mediumSet = []
@@ -10,31 +12,31 @@ def cpufuzzylogic(cpu):
     else:
         not_available = 0.0
 
-    x = float(40 - cpu)/float(40 - 20)
-    smallSet.extend((x,1))
+    x = float(40 - cpu) / float(40 - 20)
+    smallSet.extend((x, 1))
     smallSetDegree = min(smallSet)
     if smallSetDegree < 0:
         smallSetDegree = 0.0
     inputsetwithdegrees['SMALL'] = smallSetDegree
 
-    y = float(cpu - 20)/float(40 - 20)
+    y = float(cpu - 20) / float(40 - 20)
     z = 1.0
     t = float(80 - cpu) / float(80 - 60)
     mediumSet.extend((y, z, t))
     mediumsetdegree = min(mediumSet)
     if mediumsetdegree < 0:
-        mediumsetdegree=0.0
+        mediumsetdegree = 0.0
     inputsetwithdegrees['MEDIUM'] = mediumsetdegree
 
-
-    y = float(cpu - 60.)/float(80 - 60)
+    y = float(cpu - 60.) / float(80 - 60)
     z = 1.0
     largeSet.extend((y, z))
     largesetdegree = min(largeSet)
-    if largesetdegree < 0 :
-         largesetdegree = 0.0
+    if largesetdegree < 0:
+        largesetdegree = 0.0
     inputsetwithdegrees['LARGE'] = largesetdegree
-    cpuset.objects.create(SMALL=inputsetwithdegrees['SMALL'],MEDIUM=inputsetwithdegrees['MEDIUM'], LARGE=inputsetwithdegrees['LARGE'])
+    cpuset.objects.create(SMALL=inputsetwithdegrees['SMALL'], MEDIUM=inputsetwithdegrees['MEDIUM'],
+                          LARGE=inputsetwithdegrees['LARGE'])
     return inputsetwithdegrees
 
 
@@ -43,33 +45,33 @@ def ramfuzzylogic(ram):
     mediumSet = []
     largeSet = []
     inputsetwithdegrees = {}
-    if ram <= 0 :
+    if ram <= 0:
         not_available = 1.0
     else:
         not_available = 0.0
 
-    x = float(40 - ram)/float(40 - 20)
-    smallSet.extend((x,1))
+    x = float(40 - ram) / float(40 - 20)
+    smallSet.extend((x, 1))
     smallSetDegree = min(smallSet)
     if smallSetDegree < 0:
         smallSetDegree = 0.0
     inputsetwithdegrees['SMALL'] = smallSetDegree
 
-    y = float(ram - 20)/float(40 - 20)
+    y = float(ram - 20) / float(40 - 20)
     z = 1.0
     t = float(80 - ram) / float(80 - 60)
     mediumSet.extend((y, z, t))
     mediumsetdegree = min(mediumSet)
     if mediumsetdegree < 0:
-        mediumsetdegree=0.0
+        mediumsetdegree = 0.0
     inputsetwithdegrees['MEDIUM'] = mediumsetdegree
 
-    y = float(ram - 60.)/float(80 - 60)
+    y = float(ram - 60.) / float(80 - 60)
     z = 1.0
     largeSet.extend((y, z))
     largesetdegree = min(largeSet)
-    if largesetdegree < 0 :
-         largesetdegree = 0.0
+    if largesetdegree < 0:
+        largesetdegree = 0.0
     inputsetwithdegrees['LARGE'] = largesetdegree
 
     ramset.objects.create(SMALL=inputsetwithdegrees['SMALL'], MEDIUM=inputsetwithdegrees['MEDIUM'],
@@ -82,38 +84,39 @@ def diskfuzzylogic(disk):
     mediumSet = []
     largeSet = []
     inputsetwithdegrees = {}
-    if disk <= 0 :
+    if disk <= 0:
         not_available = 1.0
     else:
         not_available = 0.0
-    x = float(40 - disk)/float(40 - 20)
-    smallSet.extend((x,1))
+    x = float(40 - disk) / float(40 - 20)
+    smallSet.extend((x, 1))
     smallSetDegree = min(smallSet)
     if smallSetDegree < 0:
         smallSetDegree = 0.0
 
     inputsetwithdegrees['SMALL'] = smallSetDegree
 
-    y = float(disk - 20)/float(40 - 20)
+    y = float(disk - 20) / float(40 - 20)
     z = 1.0
     t = float(80 - disk) / float(80 - 60)
     mediumSet.extend((y, z, t))
     mediumsetdegree = min(mediumSet)
     if mediumsetdegree < 0:
-        mediumsetdegree=0.0
+        mediumsetdegree = 0.0
     inputsetwithdegrees['MEDIUM'] = mediumsetdegree
-    y = float(disk - 60.)/float(80 - 60)
+    y = float(disk - 60.) / float(80 - 60)
     z = 1.0
     largeSet.extend((y, z))
 
     largesetdegree = min(largeSet)
-    if largesetdegree < 0 :
-         largesetdegree = 0
+    if largesetdegree < 0:
+        largesetdegree = 0
     inputsetwithdegrees['LARGE'] = largesetdegree
     print inputsetwithdegrees
     diskset.objects.create(SMALL=inputsetwithdegrees['SMALL'], MEDIUM=inputsetwithdegrees['MEDIUM'],
-                          LARGE=inputsetwithdegrees['LARGE'])
+                           LARGE=inputsetwithdegrees['LARGE'])
     return inputsetwithdegrees
+
 
 def outputmemberfunction(serverindex):
     emptySet = []
@@ -122,8 +125,8 @@ def outputmemberfunction(serverindex):
     almostFullSet = []
     FullSet = []
     inputsetwithdegrees = {}
-    x = float(0.3 - serverindex)/float(0.3 - 0.2)
-    emptySet.extend((x,1))
+    x = float(0.3 - serverindex) / float(0.3 - 0.2)
+    emptySet.extend((x, 1))
     emptySetDegree = min(emptySet)
     if emptySetDegree < 0:
         emptySetDegree = 0.0
@@ -137,21 +140,20 @@ def outputmemberfunction(serverindex):
         almostemptysetdegree = 0.0
     inputsetwithdegrees['ALMOSTEMPTY'] = almostemptysetdegree
 
-    y = float(serverindex - 0.35)/float(0.5 - 0.35)
+    y = float(serverindex - 0.35) / float(0.5 - 0.35)
     t = float(0.65 - serverindex) / float(0.65 - 0.5)
-    mediumSet.extend((y,t))
+    mediumSet.extend((y, t))
     mediumsetdegree = min(mediumSet)
     if mediumsetdegree < 0:
-        mediumsetdegree=0.0
+        mediumsetdegree = 0.0
     inputsetwithdegrees['MEDIUM'] = mediumsetdegree
 
-
-    y = float(serverindex - 0.5)/float(0.65 - 0.5)
+    y = float(serverindex - 0.5) / float(0.65 - 0.5)
     t = float(0.8 - serverindex) / float(0.8 - 0.65)
     almostFullSet.extend((y, t))
     almostfullSetdegree = min(almostFullSet)
-    if almostfullSetdegree < 0 :
-         almostfullSetdegree = 0
+    if almostfullSetdegree < 0:
+        almostfullSetdegree = 0
     inputsetwithdegrees['ALMOSTFULL'] = almostfullSetdegree
 
     y = float(serverindex - 0.65) / float(0.80 - 0.65)
@@ -162,10 +164,13 @@ def outputmemberfunction(serverindex):
         fullSetdegree = 0
     inputsetwithdegrees['FULL'] = fullSetdegree
     outputset.objects.create(EMPTY=inputsetwithdegrees['EMPTY'], ALMOSTEMPTY=inputsetwithdegrees['ALMOSTEMPTY'],
-                          MEDIUM=inputsetwithdegrees['MEDIUM'], ALMOSTFULL=inputsetwithdegrees['ALMOSTFULL'], FULL=inputsetwithdegrees['FULL'])
+                             MEDIUM=inputsetwithdegrees['MEDIUM'], ALMOSTFULL=inputsetwithdegrees['ALMOSTFULL'],
+                             FULL=inputsetwithdegrees['FULL'])
     return inputsetwithdegrees
+
+
 def ruletable(cpu, ram, disk):
-    states= {'SMALL': 2, 'MEDIUM': 1, 'LARGE': 0}
+    states = {'SMALL': 2, 'MEDIUM': 1, 'LARGE': 0}
     cpusets = cpufuzzylogic(cpu)
 
     cpuresult = max(cpusets, key=cpusets.get)
@@ -177,9 +182,9 @@ def ruletable(cpu, ram, disk):
     print disksets
     diskresult = max(disksets, key=disksets.get)
 
-    serverIndex = float(states[cpuresult] + states[ramresult] + states[diskresult])/6.0
+    serverIndex = float(states[cpuresult] + states[ramresult] + states[diskresult]) / 6.0
     output = outputmemberfunction(serverIndex)
 
     outputresult = max(output, key=output.get)
-# if __name__ == "__main__":
-#     ruletable(25,60,85)
+    # if __name__ == "__main__":
+    #     ruletable(25,60,85)
