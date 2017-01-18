@@ -2,11 +2,11 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-class VirtualMachine(models.Model):
-    machine_name = models.CharField(max_length=100)
-    machine_cpu = models.IntegerField(default=0)
-    machine_ram = models.IntegerField(default=0)
-    machine_disk = models.IntegerField(default=0)
+# class VirtualMachine(models.Model):
+#     machine_name = models.CharField(max_length=100)
+#     machine_cpu = models.IntegerField(default=0)
+#     machine_ram = models.IntegerField(default=0)
+#     machine_disk = models.IntegerField(default=0)
 
 
 class cpuset(models.Model):
@@ -56,19 +56,19 @@ class Diskusage(models.Model):
     MEDIUM = models.IntegerField(default=0)
     LARGE = models.IntegerField(default=0)
 
-
-class Server(models.Model):
-    virtual_machine = models.ForeignKey(VirtualMachine, null=True)
-    server_name = models.CharField(max_length=100)
-    server_cpu = models.IntegerField(default=100)
-    server_ram = models.IntegerField(default=100)
-    server_disk = models.IntegerField(default=100)
-
-
-    def updateServer(self, virtualmachine):
-        self.server_cpu -= virtualmachine.machine_cpu
-        self.server_ram -= virtualmachine.machine_ram
-        self.server_disk -= virtualmachine.machine_disk
+#
+# class Server(models.Model):
+#     virtual_machine = models.ForeignKey(VirtualMachine, null=True)
+#     server_name = models.CharField(max_length=100)
+#     server_cpu = models.IntegerField(default=100)
+#     server_ram = models.IntegerField(default=100)
+#     server_disk = models.IntegerField(default=100)
+#
+#
+#     def updateServer(self, virtualmachine):
+#         self.server_cpu -= virtualmachine.machine_cpu
+#         self.server_ram -= virtualmachine.machine_ram
+#         self.server_disk -= virtualmachine.machine_disk
 
 
 from django.db import models
